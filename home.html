@@ -17,7 +17,7 @@ Accountable Ring Signature (ARS) is a signature scheme that:
 In this project, the 4 protocols given in the original paper are implemented with Python. Certain modifications are made on the original design to make the coding feasible. The modified design has been analysed and proved so that it achieves the same security properties as in the original design.
 
 ## Architecture
-There are seven main functions in ARS scheme:
+There are 6 main functions in ARS scheme:
 
 - system parameter initialisation: this function chooses system parameters, such as key length, prime ```p``` for the group of prime order, geneartor ```g``` of the group.
 - key generation, ```keygen(sk,vk)```: this function generates a pair of public key and private key for any entities in the network.
@@ -29,7 +29,7 @@ There are seven main functions in ARS scheme:
 To clarify, the notations of keys in this document are:
 - ```sk, vk```: private key and public key of the signer. As the scheme is based on DDH, we have: ```vk = g^sk mod p```.
 - ```ek, dk```: private key and pubic key of the opener. ```dk = g^ek mod p```.
-- Ring R represented with a list of public keys: ```R = ${vk_0, vk_1, ..., vk_r}$``` for a ring of $r$ members.
+- Ring R represented with a list of public keys: ```R = {vk_0, vk_1, ..., vk_r}``` for a ring of *r* members.
 
 ## The Main Ideas
 The main ideas of how to faciliate a signature scheme that achieves the properties as said in Intro are:
