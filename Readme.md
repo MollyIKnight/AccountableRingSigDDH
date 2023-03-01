@@ -12,6 +12,7 @@ Accountable Ring Signature (ARS) is a signature scheme that:
 
 In this project, the four protocols given in the original paper are implemented with Python. Certain modifications are made on the original design to make the coding feasible. The modified design has been analysed and proved so that it achieves the same security properties as in the original design.
 
+
 ## Architecture
 There are six main functions in ARS scheme:
 
@@ -26,6 +27,20 @@ To clarify, the notations of keys in this document are:
 - ```sk, vk```: private key and public key of the signer. As the scheme is based on DDH, we have: ```vk = g^sk mod p```.
 - ```ek, dk```: private key and pubic key of the opener. ```ek = g^dk mod p```.
 - Ring ```R``` represented with a list of public keys: ```R = {vk_0, vk_1, ..., vk_r}``` for a ring of *r* members.
+
+
+## Running the Code
+Two Python scripts are provided. 
+
+### ```R4protocol.py``` 
+```R4protocol.py``` contains all the code needed for using the ARS scheme. At first, some global parameters are initialised, including prime ```p```, generator ```g```, ring size ```n^m```, and signer index ```l```.
+The main code that calls the functions for key generation, signing, verification, opening, and opening verification is at the end of the script.
+
+If a message is modified after signing, the code will raise a value error, saying the relation failed to be proven correctly. If ```R4Protocol.py``` runs without error, the signature verification is successful.
+
+The whole signature, using the variable names in the code, is ```ek, CA,CB,CC,CD, Fmatrix, zA, zC, G, z, ciph, zs, za, zb, d, A, B, cvk2```. 
+### ```R4simulator.py``` 
+This is the simulator to prove the modified zkp protocol for R4 in this code is zero-knowledge. It is not needed during the signing and verification.
 
 ## The Main Ideas
 The main ideas of how to faciliate a signature scheme that achieves the properties as said in Intro are:
@@ -52,4 +67,6 @@ The details of the four zkp protocols can be seen in the Bootle paper. However, 
     - every time there is a j=0 to m-1 sum or product operation, it should be 0 to m-1, not 0 to m.
     - ```A``` and ```B``` in R3 is not the same as in R1 and R2; however, ```A``` and ```B``` refer to the same items in R1 and R2.
     - ```d``` in R3 is not the same as ```c```. ```d``` is only used for generating the list of ciphertext which contains an encryption of 1, the $\{c_i:i \in [0,N-1]\}$ list. Both the list and ```c``` need to be given to the verifier.
-  
+  - The m not in Zq warning that shows up in running the code is because the exponent should be in Zq, and the Pedersen commitment function has a check on that. When the function finds the exponent is not in Zq, it does modulo on the exponent to put it in Zq before it does group exponentiation.
+
+
