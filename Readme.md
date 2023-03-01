@@ -38,7 +38,7 @@ The main ideas of how to faciliate a signature scheme that achieves the properti
   Each of the three relations is proved based on the previous one.
 - The opener can open the signer's public key easily by decrypting the encryption of ```vk``` in the signature. 
 - To prove the opening is correct, the opener generates a zkp to prove R4: the ```vk``` it gives is indeed encrypted in ```c```.
-- To prove R1, R2, R3 and R4, a interactive zkp protocol is given in the Bootle paper. By using Fiat-Shamir transformation, the zkp protocol for R3 can be transformed into a pair of signature signing and verification algorithms. The message to sign, ```m```, is used to generate the challenge ```x```, together with other items needed for the zkp. If the verifier can verify the signature by generating the challenge ```x``` on their side, using the message ```m``` and other items given by the prover, then the message is authentic and indeed from one of the ring members.
+- To prove R1, R2, R3 and R4, a interactive zkp protocol is given for each of them. By using Fiat-Shamir transformation, the zkp protocol for R3 can be transformed into a pair of signature signing and verification algorithms. The message to sign, ```m```, is used to generate the challenge ```x```, together with other items needed for the zkp. If the verifier can verify the signature by generating the challenge ```x``` on their side, using the message ```m``` and other items given by the prover, then the message is authentic and indeed from one of the ring members.
 
 ## Implementation Notes
 The details of the four zkp protocols can be seen in the Bootle paper. However, there are a few modifications made during the implementation that are worth noticing.
